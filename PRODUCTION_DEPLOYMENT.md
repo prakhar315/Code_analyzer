@@ -55,13 +55,34 @@
 ### Vercel Settings
 ```json
 {
-  "version": 2,
-  "builds": [{"src": "frontend/**", "use": "@vercel/static"}],
-  "routes": [{"src": "/(.*)", "dest": "/frontend/$1"}],
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/frontend/index.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/frontend/$1"
+    }
+  ],
   "headers": [
     {
-      "source": "/frontend/(.*\\.(js|css|png|jpg|jpeg|gif|ico|svg))",
-      "headers": [{"key": "Cache-Control", "value": "public, max-age=31536000, immutable"}]
+      "source": "/(.*\\.(js|css|png|jpg|jpeg|gif|ico|svg))",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/index.html",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
     }
   ]
 }
