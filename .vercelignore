@@ -1,0 +1,34 @@
+# Vercel ignore file
+# Ignore files that don't need to be deployed
+
+# Development files
+*.md
+!README.md
+!PRODUCTION_DEPLOYMENT.md
+
+# Git files
+.git/
+.gitignore
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Project documentation (keep essential ones)
+project_report/
+
+# Keep only essential files for deployment
+# frontend/ - needed
+# vercel.json - needed
+# package.json - needed
+# README.md - needed for repository info
