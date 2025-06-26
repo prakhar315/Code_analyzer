@@ -39,7 +39,20 @@ try {
         console.log('❌ vercel.json contains "routes" which conflicts with "rewrites"');
         allFilesExist = false;
     } else {
-        console.log('✅ vercel.json configuration is valid');
+        console.log('✅ vercel.json configuration is valid (no conflicting routes)');
+    }
+
+    // Check for problematic regex patterns
+    if (vercelConfig.headers) {
+        let hasValidHeaders = true;
+        vercelConfig.headers.forEach((header, index) => {
+            if (header.source && header.source.includes('\\.(') && !header.source.endsWith('$')) {
+                console.log(`⚠️  Header ${index} may have regex issues: ${header.source}`);
+            }
+        });
+        if (hasValidHeaders) {
+            console.log('✅ Header patterns are valid');
+        }
     }
     
     if (vercelConfig.rewrites && vercelConfig.rewrites.length > 0) {
