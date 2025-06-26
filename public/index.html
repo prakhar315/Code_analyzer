@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional C Code Analyzer with Lexical Analysis and Parse Tree Generation. Client-side processing, real-time analysis, and grammar-based parsing.">
+    <meta name="keywords" content="C language, lexical analysis, parse tree, compiler design, syntax analysis, programming tools">
+    <meta name="author" content="C Code Analyzer">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="C Code Analyzer - Professional Lexical Analysis & Parse Tree">
+    <meta property="og:description" content="Advanced C code analysis tool with real-time lexical analysis and grammar-based parse tree generation">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://code-analyzer.vercel.app">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="C Code Analyzer">
+    <meta name="twitter:description" content="Professional C code analysis with lexical analysis and parse tree generation">
+
+    <title>C Code Analyzer - Professional Lexical Analysis & Parse Tree</title>
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="style.css" as="style">
+    <link rel="preload" href="c-analyzer.js" as="script">
+    <link rel="preload" href="script.js" as="script">
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔍</text></svg>">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔍 C Code Analyzer</h1>
+            <p>Professional Lexical Analysis & Parse Tree Generation</p>
+            <div class="feature-badges">
+                <span class="badge">🚀 Client-side</span>
+                <span class="badge">⚡ Real-time</span>
+                <span class="badge">🌳 Grammar-based</span>
+            </div>
+        </header>
+
+        <div class="editor-container">
+            <div class="input-section">
+                <h2>Input Code</h2>
+                <textarea id="codeInput" placeholder="Enter your C code here...
+Example:
+#include <stdio.h>
+
+int main() {
+    int a = 5;
+    int b = 10;
+    int sum = a + b;
+    printf(&quot;Sum: %d&quot;, sum);
+    return 0;
+}"></textarea>
+                <div class="input-controls">
+                    <button id="clearBtn">Clear</button>
+                    <button id="analyzeBtn">Analyze Code</button>
+                </div>
+            </div>
+
+            <div class="output-section">
+                <div class="output-header">
+                    <h2>Output</h2>
+                    <div class="selector-container">
+                        <label for="outputType">Select Analysis Type:</label>
+                        <select id="outputType">
+                            <option value="lexical">Lexical Analysis</option>
+                            <option value="ast">Parse Tree (AST)</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="outputDisplay" class="output-display">
+                    <div class="placeholder">
+                        <p>Enter C code and click "Analyze Code" to see the results</p>
+                        <div class="analysis-info">
+                            <h3>Analysis Types:</h3>
+                            <ul>
+                                <li><strong>Lexical Analysis:</strong> Breaks code into tokens (keywords, identifiers, operators, literals, etc.)</li>
+                                <li><strong>Parse Tree (AST):</strong> Shows the hierarchical structure of your code with functions, variables, and control structures</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="c-analyzer.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
