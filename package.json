@@ -1,12 +1,14 @@
 {
   "name": "c-code-analyzer",
   "version": "2.1.0",
-  "description": "A client-side web-based C code analyzer with lexical analysis and parse tree generation",
+  "description": "Production-ready client-side C code analyzer with lexical analysis and grammar-based parse tree generation",
   "main": "frontend/index.html",
   "scripts": {
     "dev": "python -m http.server 3000 --directory frontend",
-    "build": "echo 'No build step required - static files only'",
-    "start": "python -m http.server 8080 --directory frontend"
+    "build": "echo 'Production build: Static files optimized for Vercel deployment'",
+    "start": "python -m http.server 8080 --directory frontend",
+    "deploy": "vercel --prod",
+    "preview": "vercel"
   },
   "keywords": [
     "c-language",

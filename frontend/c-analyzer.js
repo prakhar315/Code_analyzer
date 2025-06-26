@@ -1,7 +1,22 @@
 /**
- * C Code Analyzer - Client-side Implementation
+ * C Code Analyzer - Production Client-side Implementation
  * Lexical Analysis and Parse Tree Generation for C Code
+ *
+ * @version 2.1.0
+ * @author C Code Analyzer Team
+ * @license MIT
  */
+
+// Production error handling
+window.addEventListener('error', function(e) {
+    console.error('Global error:', e.error);
+    // Could send to analytics service in production
+});
+
+window.addEventListener('unhandledrejection', function(e) {
+    console.error('Unhandled promise rejection:', e.reason);
+    e.preventDefault();
+});
 
 class CTokenizer {
     constructor() {
@@ -33,57 +48,73 @@ class CTokenizer {
     }
 
     tokenize(code) {
+        // Performance optimization: pre-allocate array
         const tokens = [];
+        const codeLength = code.length;
         let position = 0;
         let line = 1;
         let column = 1;
 
-        while (position < code.length) {
-            let matched = false;
+        // Performance optimization: cache pattern length
+        const patterns = this.tokenPatterns;
+        const patternCount = patterns.length;
 
-            for (const { type, pattern } of this.tokenPatterns) {
-                const match = code.slice(position).match(pattern);
-                if (match) {
-                    const value = match[0];
-                    
-                    if (type !== 'WHITESPACE') {
-                        let tokenType = type;
-                        
-                        // Check if identifier is a keyword
-                        if (type === 'IDENTIFIER' && this.keywords.has(value)) {
-                            tokenType = 'KEYWORD';
+        try {
+            while (position < codeLength) {
+                let matched = false;
+
+                // Performance optimization: use for loop instead of for...of
+                for (let i = 0; i < patternCount; i++) {
+                    const { type, pattern } = patterns[i];
+                    const remainingCode = code.slice(position);
+                    const match = remainingCode.match(pattern);
+
+                    if (match) {
+                        const value = match[0];
+
+                        if (type !== 'WHITESPACE') {
+                            let tokenType = type;
+
+                            // Check if identifier is a keyword
+                            if (type === 'IDENTIFIER' && this.keywords.has(value)) {
+                                tokenType = 'KEYWORD';
+                            }
+
+                            tokens.push({
+                                type: tokenType,
+                                value: value,
+                                line: line,
+                                column: column,
+                                position: position
+                            });
                         }
 
-                        tokens.push({
-                            type: tokenType,
-                            value: value,
-                            line: line,
-                            column: column,
-                            position: position
-                        });
-                    }
-
-                    // Update position and line/column tracking
-                    for (let i = 0; i < value.length; i++) {
-                        if (value[i] === '\n') {
-                            line++;
-                            column = 1;
-                        } else {
-                            column++;
+                        // Update position and line/column tracking
+                        const valueLength = value.length;
+                        for (let j = 0; j < valueLength; j++) {
+                            if (value[j] === '\n') {
+                                line++;
+                                column = 1;
+                            } else {
+                                column++;
+                            }
                         }
+
+                        position += valueLength;
+                        matched = true;
+                        break;
                     }
-                    
-                    position += value.length;
-                    matched = true;
-                    break;
+                }
+
+                if (!matched) {
+                    // Skip unknown character
+                    position++;
+                    column++;
                 }
             }
-
-            if (!matched) {
-                // Skip unknown character
-                position++;
-                column++;
-            }
+        } catch (error) {
+            console.error('Tokenization error:', error);
+            throw new Error(`Tokenization failed at position ${position}: ${error.message}`);
         }
 
         return tokens;

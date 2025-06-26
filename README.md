@@ -1,21 +1,25 @@
-# C Code Analyzer
+# 🔍 C Code Analyzer
 
-A client-side web-based C code analyzer with lexical analysis and parse tree (AST) generation. No backend servers required!
+A production-ready, client-side web-based C code analyzer with professional lexical analysis and parse tree generation. Built with modern web technologies and optimized for performance.
 
 ## 🚀 Live Demo
 
-**Deployed on Vercel**: [https://your-app.vercel.app](https://your-app.vercel.app)
+**Production Deployment**: [Deploy to Vercel](https://vercel.com/new/clone?repository-url=https://github.com/prakhar315/Code_analyzer)
 
-## ✨ Features
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/prakhar315/Code_analyzer)
+
+## ✨ Production Features
 
 - **🚀 Client-side Processing**: Runs entirely in your browser - no servers needed
 - **🔍 Enhanced Lexical Analysis**: Complete C tokenization with categorized display and emojis
-- **🌳 Advanced Parse Tree (AST)**: Detailed syntax tree with visual hierarchy and metadata
-- **⚡ Real-time Analysis**: Instant results with improved performance
-- **📱 Mobile Friendly**: Responsive design works perfectly on all devices
-- **🎨 Beautiful UI**: Enhanced visual formatting with emojis and better typography
-- **📊 Code Metrics**: Displays code statistics and analysis summary
-- **🔧 No Installation**: Just open and use - zero setup required
+- **🌳 Grammar-based Parse Tree**: True syntax analysis following C language grammar productions
+- **⚡ High Performance**: Optimized algorithms with performance monitoring
+- **📱 Mobile Responsive**: Professional design works perfectly on all devices
+- **🎨 Modern UI**: Clean, professional interface with accessibility features
+- **📊 Code Metrics**: Real-time statistics and comprehensive analysis summary
+- **🛡️ Production Ready**: Error handling, input validation, and performance optimization
+- **🔧 Zero Setup**: No installation required - just open and use
+- **📈 SEO Optimized**: Meta tags, Open Graph, and Twitter Card support
 
 ## 🎯 Quick Start
 
